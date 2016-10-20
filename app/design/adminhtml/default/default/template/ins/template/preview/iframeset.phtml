@@ -1,0 +1,15 @@
+<?php $template = Mage::registry('current_template'); ?>
+<?php if ($template && $template->getId()): ?>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<frameset border="1" framespacing="0" rows="40,*">
+	
+	
+	<frame noresize="noresize" src="<?php echo $this->getUrl('*/*/switch',array('id'=>$template->getId())) ?>"></frame>
+	<frame src="<?php echo $this->getUrl('*/*/render',array('id'=>$template->getId())) ?>" name="frame_display" id="frame_display"></frame>
+	
+</frameset>
+</html>
+<?php endif; ?>

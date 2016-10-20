@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <global/>
+    <frontend>
+        <secure_url>
+            <customer>/customer/</customer>
+        </secure_url>
+        <routers>
+            <customer>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Customer</module>
+                    <frontName>customer</frontName>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+</config>

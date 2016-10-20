@@ -1,0 +1,133 @@
+<div class="e-edit">
+    <section class="col3 col-1 b-r wp25">
+    	<div class="inner">
+	    	<div class="sch-box pr">
+	    		<input type="text" id="keyword" placeholder="company.com" class="ipt" />
+	    		<button type="button " id="sch_btn" class="btn pa">搜索</button>
+	    		<span class="i-icon-delete"></span>
+	    	</div>
+	    	<div id="sch_tips" class="tips">
+				<div>请输入正确的网址</div>	
+			</div>
+    	</div>
+    </section>
+    <section class="col3 col-2 b-r email-main wp50">
+    	<div class="p0_25">
+	    	<div class="actions mb15">
+	    		<button class="btn">设置发送时间</button>
+	    		<button class="btn">发弹率告警</button>
+	    		<button class="btn">重复发送配置</button>
+	    	</div>
+	    	<div class="field">
+				<label class="tit">收件人：</label>
+				<div class="multi fields">
+					<input type="text" name="email_to" id="email_to" class="ipt"/>
+					
+				</div>
+			</div>
+			<div class="field">
+				<label class="tit">发件人：</label>
+				<div class="selection fields">
+					<span class="selected" id="email_from">&lt;yanggaojiao@qq.com&gt;</span>
+					<i class="icon icon-ad"></i>
+					<ul class="dropdown" style="display:none">
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="field mb15">
+				<label class="tit">邮件主题：</label>
+				<div class="fields">
+					<input type="text" name="email_subject" id="email_subject" class="ipt"/>
+				</div>
+			</div>
+			
+			<div class="content ">
+				<textarea name="name" rows="10" cols="50" wrap="off" id="email_body" name="email_body"></textarea>
+				<script type="text/javascript">
+	            //<![CDATA[
+	                openEditorPopup = function(url, name, specs, parent) {
+	                    if ((typeof popups == "undefined") || popups[name] == undefined || popups[name].closed) {
+	                        if (typeof popups == "undefined") {
+	                            popups = new Array();
+	                        }
+	                        var opener = (parent != undefined ? parent : window);
+	                        popups[name] = opener.open(url, name, specs);
+	                    } else {
+	                        popups[name].focus();
+	                    }
+	                    return popups[name];
+	                }
+	
+	                closeEditorPopup = function(name) {
+	                    if ((typeof popups != "undefined") && popups[name] != undefined && !popups[name].closed) {
+	                        popups[name].close();
+	                    }
+	                }
+	            //]]>;
+	            
+	            </script>
+	            
+	            <script type="text/javascript">
+	                //<![CDATA[
+	                    wysiwygemail_body = new tinyMceWysiwygSetup("email_body", {"enabled":true,"hidden":false,"use_container":false,"add_variables":false,"add_widgets":true,"no_display":false,"translator":{},"encode_directives":true,"directives_url":"http:\/\/www.meegii.com\/index.php\/meegii\/cms_wysiwyg\/directive\/key\/9fb919d966962bf107966719cf4c2bd8\/","popup_css":"http:\/\/www.meegii.com\/js\/mage\/adminhtml\/wysiwyg\/tiny_mce\/themes\/advanced\/skins\/default\/dialog.css","content_css":"http:\/\/www.meegii.com\/js\/mage\/adminhtml\/wysiwyg\/tiny_mce\/themes\/advanced\/skins\/default\/content.css","width":"100%","plugins":[],"directives_url_quoted":"http\\:\/\/www\\.meegii\\.com\/index\\.php\/meegii\/cms_wysiwyg\/directive\/key\/9fb919d966962bf107966719cf4c2bd8\/","add_images":true,"files_browser_window_url":"http:\/\/www.meegii.com\/index.php\/meegii\/cms_wysiwyg_images\/index\/key\/a9cee7124506e4da7cd9f6e4744ee9c9\/","files_browser_window_width":1000,"files_browser_window_height":600,"tab_id":"email_body","widget_plugin_src":"http:\/\/www.meegii.com\/js\/mage\/adminhtml\/wysiwyg\/tiny_mce\/plugins\/magentowidget\/editor_plugin.js","widget_images_url":"http:\/\/www.meegii.com\/skin\/adminhtml\/default\/default\/images\/widget\/","widget_placeholders":["catalog__category_widget_link.gif","catalog__post_widget_link.gif","catalog__post_widget_new.gif","cms__widget_block.gif","cms__widget_page_link.gif","default.gif","reports__post_widget_compared.gif","reports__post_widget_viewed.gif"],"widget_window_url":"http:\/\/www.meegii.com\/index.php\/meegii\/widget\/index\/key\/358f59f7f17210b00440cee2ea666abe\/","firebug_warning_title":"\u8b66\u544a","firebug_warning_text":"Firebug is known to make the WYSIWYG editor slow unless it is turned off or configured properly.","firebug_warning_anchor":"Hide"});Event.observe(window, "load", wysiwygemail_body.setup.bind(wysiwygemail_body, "exact"));
+	                    editorFormValidationHandler = wysiwygemail_body.onFormValidation.bind(wysiwygemail_body);
+	                    Event.observe("toggleemail_body", "click", wysiwygemail_body.toggle.bind(wysiwygemail_body));
+	                    varienGlobalEvents.attachEventHandler("formSubmit", editorFormValidationHandler);
+	                    varienGlobalEvents.attachEventHandler("tinymceBeforeSetContent", wysiwygemail_body.beforeSetContent.bind(wysiwygemail_body));
+	                    varienGlobalEvents.attachEventHandler("tinymceSaveContent", wysiwygemail_body.saveContent.bind(wysiwygemail_body));
+	                    varienGlobalEvents.clearEventHandlers("open_browser_callback");
+	                    varienGlobalEvents.attachEventHandler("open_browser_callback", wysiwygemail_body.openFileBrowser.bind(wysiwygemail_body));
+	                //]]>;
+                </script>
+            </div>
+		</div>
+    </section>
+    <section class="col3 col-3 wp25">
+    	<div class="p0_15">
+	    	<ul class="tabs">
+	    		<li>我要快</li>
+	    		<li>我要准</li>
+	    		<div class="clr"></div>
+	    	</ul>
+	    	<div class="padder">
+	    		<div class="tab-content" id="tab-c-quik">
+	    			<div class="mt20">
+		    			<h5 class="mb10">免费模版</h5>
+		    			<select>
+		    				<option value=''>-请选择-</option>
+						</select>
+	    			</div>
+	    			<div class="mt20">
+	    				<h5 class="mb10">我的常用模版</h5>
+		    			<ul class="items">
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    				<li><a href="javacript:;" title="">给阿拉伯客户的邮件模版</a></li>
+		    			</ul>
+	    			
+	    			</div>
+	    		</div>
+	    		<div class="tab-content" id="tab-c-exa">
+	    			
+	    		
+	    		</div>
+	    	</div>
+    	</div>
+    </section>
+</div>
+<script>
+jQuery(function(){
+	resetSection();
+	jQuery(window).resize(function() {
+		resetSection();
+	})
+})
+function resetSection() {
+	var height = jQuery(window).height()-40;
+	jQuery('.e-edit > section').css({height:height+'px'})
+}
+</script>

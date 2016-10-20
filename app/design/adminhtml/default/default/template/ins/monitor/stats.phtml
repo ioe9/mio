@@ -1,0 +1,159 @@
+
+<style>
+.data-table th {
+    background: #eee none repeat scroll 0 0;
+    border: 1px solid #ccc;
+}
+
+.data-table dt {
+    float: left;
+    margin-right: 10px;
+}
+.data-table tbody td,.data-table th { vertical-align: middle; }
+.data-table tbody td .name { height:20px;overflow:hidden; }
+.data-table h3 {
+    margin: 0;
+    text-align:center;
+}
+.data-table img {
+    display: block;
+}
+.data-table p {
+	margin:0;
+}
+.data-table thead th {
+	border-left:0;
+	border-top:0;
+}
+.data-table tbody th {
+	border-left:0;
+	border-top:0;
+}
+.data-table tbody th:last-child,
+.data-table thead th:last-child {
+	border-right:0;
+
+}
+.grid table tfoot tr td {
+	border-top:0;
+}
+</style>
+<div class="content-header">
+    <table cellspacing="0">
+    	
+        <tr>
+            <td style="50%"><h3 class="icon-head head-posts">Bounce实时监控</h3></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml(); ?></td>
+        </tr>
+    </table>
+</div>
+<?php $monthdata = $this->getDataByMonth(); ?>
+<?php $hourdata = $this->getDataByhour(); ?>
+<?php $daydata = $this->getDataByDay(); ?>
+<div>
+	<div id="wrong_message"></div>
+	<!-- Filter -->
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<h3>最近1小时平均数据统计</h3>
+		<table cellspacing="0" border="1" width="100%" style="text-align:center;" class="data-table">
+			<thead>
+				<tr>
+					<th style="text-align:center">State</th>
+					<th style="text-align:center">Domain Name</th>
+					<th style="text-align:center">Accepted</th>
+					<th style="text-align:center">Delivered</th>
+					<th style="text-align:center">clicked</th>
+					<th style="text-align:center">opened</th>
+					<th style="text-align:center">ESP Lock</th>
+					<th style="text-align:center">unsubscribed</th>
+					<th style="text-align:center">Bounced</th>
+					<th style="text-align:center">Complaints</th>
+				</tr>
+			</thead>
+			<?php foreach ($hourdata as $_data): ?>
+			<tr>
+				<?php $state = $_data['status']; ?>
+				<td style="font-size:12px;"><?php if ($state=='1'): ?><span style="background:#00a96d;color:#FFF; padding: 1px 8px;border-radius: 3px">正常运行</a><?php elseif($state==0): ?><span style="background:#c40022;color:#FFF; padding: 1px 8px;border-radius: 3px">已停用</span><?php endif; ?></td>
+				<td><?php echo $_data['server_name']; ?></td>
+				<td><?php echo $_data['count_accepted']; ?></td>
+				<td><?php echo $_data['count_delivered']; ?></td>
+				<td><?php echo $_data['count_click']; ?></td>
+				<td><?php echo $_data['count_open']; ?></td>
+				<td><?php echo $_data['count_failed_tem_esp']; ?></td>
+				<td><?php echo $_data['count_failed_per_sunsubscribe']; ?></td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_bounce']/$_data['count_accepted'])*100); ?>%</td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_scomplaint']/$_data['count_accepted'])*100); ?>%</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<h3>当天平均数据统计</h3>
+		<table cellspacing="0" border="1" width="100%" style="text-align:center;" class="data-table">
+			<thead>
+				<tr>
+					<th style="text-align:center">State</th>
+					<th style="text-align:center">Domain Name</th>
+					<th style="text-align:center">Accepted</th>
+					<th style="text-align:center">Delivered</th>
+					<th style="text-align:center">clicked</th>
+					<th style="text-align:center">opened</th>
+					<th style="text-align:center">ESP Lock</th>
+					<th style="text-align:center">unsubscribed</th>
+					<th style="text-align:center">Bounced</th>
+					<th style="text-align:center">Complaints</th>
+				</tr>
+			</thead>
+			<?php foreach ($daydata as $_data): ?>
+			<tr>
+				<?php $state = $_data['status']; ?>
+				<td style="font-size:12px;"><?php if ($state=='1'): ?><span style="background:#00a96d;color:#FFF; padding: 1px 8px;border-radius: 3px">正常运行</a><?php elseif($state==0): ?><span style="background:#c40022;color:#FFF; padding: 1px 8px;border-radius: 3px">已停用</span><?php endif; ?></td>
+				<td><?php echo $_data['server_name']; ?></td>
+				<td><?php echo $_data['count_accepted']; ?></td>
+				<td><?php echo $_data['count_delivered']; ?></td>
+				<td><?php echo $_data['count_click']; ?></td>
+				<td><?php echo $_data['count_open']; ?></td>
+				<td><?php echo $_data['count_failed_tem_esp']; ?></td>
+				<td><?php echo $_data['count_failed_per_sunsubscribe']; ?></td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_bounce']/$_data['count_accepted'])*100); ?>%</td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_scomplaint']/$_data['count_accepted'])*100); ?>%</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<h3>30天平均数据统计</h3>
+		<table cellspacing="0" border="1" width="100%" style="text-align:center;" class="data-table">
+			<thead>
+				<tr>
+					<th style="text-align:center">State</th>
+					<th style="text-align:center">Domain Name</th>
+					<th style="text-align:center">Accepted</th>
+					<th style="text-align:center">Delivered</th>
+					<th style="text-align:center">clicked</th>
+					<th style="text-align:center">opened</th>
+					<th style="text-align:center">ESP Lock</th>
+					<th style="text-align:center">unsubscribed</th>
+					<th style="text-align:center">Bounced</th>
+					<th style="text-align:center">Complaints</th>
+				</tr>
+			</thead>
+			<?php foreach ($monthdata as $_data): ?>
+			<tr>
+				<?php $state = $_data['status']; ?>
+				<td style="font-size:12px;"><?php if ($state=='1'): ?><span style="background:#00a96d;color:#FFF; padding: 1px 8px;border-radius: 3px">正常运行</a><?php elseif($state==0): ?><span style="background:#c40022;color:#FFF; padding: 1px 8px;border-radius: 3px">已停用</span><?php endif; ?></td>
+				<td><?php echo $_data['server_name']; ?></td>
+				<td><?php echo $_data['count_accepted']; ?></td>
+				<td><?php echo $_data['count_delivered']; ?></td>
+				<td><?php echo $_data['count_click']; ?></td>
+				<td><?php echo $_data['count_open']; ?></td>
+				<td><?php echo $_data['count_failed_tem_esp']; ?></td>
+				<td><?php echo $_data['count_failed_per_sunsubscribe']; ?></td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_bounce']/$_data['count_accepted'])*100); ?>%</td>
+				<td><?php echo sprintf("%.2f",($_data['count_failed_per_scomplaint']/$_data['count_accepted'])*100); ?>%</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+	
+</div>

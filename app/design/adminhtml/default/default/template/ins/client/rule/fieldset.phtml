@@ -1,0 +1,32 @@
+<style>
+
+.rule-param-children .rule-param.rule-param-new-child .element {
+	display:none;
+}
+.rule-param input, .rule-param select {
+    min-width: auto;
+    width: auto !important;
+}
+</style>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS); ?>rules.js"></script>
+<div id="ins_messages_<?php echo $this->getCode(); ?>" style="display:none;">
+	<ul class="messages">
+		<li class="success-msg">
+			<ul><li><span>规则保存成功</span></li></ul>
+		</li>
+	</ul>
+</div>
+<div class="rule-tree">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->getTitle() ?></h4>
+    </div>
+    <fieldset id="<?php echo $this->getHtmlId() ?>" <?php echo $this->serialize(array('class')) ?>>
+    	<?php $rule = $this->getRule(); ?>
+
+		<div id="<?php echo $this->getCode(); ?>_condition_container" style="padding:20px 10px 0;"></div>
+    </fieldset>
+    
+    <div class="no-display">
+    	<?php echo $this->getRuleTemplateHtml(); ?>
+    </div>
+</div>

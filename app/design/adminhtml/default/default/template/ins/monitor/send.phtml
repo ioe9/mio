@@ -1,0 +1,229 @@
+
+<style>
+.data-table th {
+    background: #eee none repeat scroll 0 0;
+    border: 1px solid #ccc;
+}
+
+.data-table dt {
+    float: left;
+    margin-right: 10px;
+}
+.data-table tbody td,.data-table th { vertical-align: middle; }
+.data-table tbody td .name { height:20px;overflow:hidden; }
+.data-table h3 {
+    margin: 0;
+    text-align:center;
+}
+.data-table img {
+    display: block;
+}
+.data-table p {
+	margin:0;
+}
+.data-table thead th {
+	border-left:0;
+	border-top:0;
+}
+.data-table tbody th {
+	border-left:0;
+	border-top:0;
+}
+.data-table tbody th:last-child,
+.data-table thead th:last-child {
+	border-right:0;
+
+}
+.grid table tfoot tr td {
+	border-top:0;
+}
+</style>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="50%"><h3 class="icon-head head-posts">邮件发送速度实时监控(统计区间为:<?php echo date('Y/m/d',strtotime(Mage::registry('start_time')));?> - <?php echo date('Y/m/d',strtotime(Mage::registry('end_time')));?>)</h3></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml(); ?></td>
+        </tr>
+    </table>
+</div>
+<?php $minutedata = $this->getDataByMinute(); ?>
+<?php $hourdata = $this->getDataByhour(); ?>
+<?php $daydata = $this->getDataByDay(); ?>
+<div>
+	<div id="wrong_message"></div>
+	<!-- Filter -->
+	<?php //echo $this->getFilterHtml(); ?>
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<table class="data-table" width="100%" border="1" style="text-align:center;" cellspacing="0">
+			<thead>
+				<?php $minuteArr = json_decode($this->getMinuteArr(),true); ?>
+				<?php $totalGrand = 0; ?>
+				<tr>
+					<th><h3  class="a-center">1小时内</h3></th>
+					<?php foreach ($minuteArr['data'] as $_date): ?>
+					<th align="center"><?php echo date('i',strtotime($_date)); ?></th>
+					<?php endforeach; ?>
+					<th><h3>总计</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $globalData = json_decode($minutedata,true); ?>
+				<?php $footTotal = array(); ?>
+				
+				<?php foreach ($globalData['series'] as $_data):?>
+				<tr>
+					
+					<th  align="center"><h3><?php echo $_data['name']; ?></h3></th>
+					<?php $total = 0; ?>
+					<?php $i = 0; ?>
+					<?php foreach ($_data['data'] as $_d):?>
+					<td  align="right"><?php if ($_d): ?><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$dateArr['data'][$i],'end_time'=>$dateArr['data'][$i]))  ?>" target="_blank"><?php echo $_d; ?></a><?php else: ?><?php endif; ?></td>
+					<?php $total += $_d; ?>
+					<?php
+					if (array_key_exists($minuteArr['data'][$i],$footTotal)) {
+						$footTotal[$minuteArr['data'][$i]]['num'] += $_d;
+					} else {
+						$footTotal[$minuteArr['data'][$i]] = array('name'=>$_data['name'],'num'=>$_d);
+					}
+					
+					?>
+					<?php $i++; ?>
+					
+					<?php endforeach; ?>
+					<th><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $total; ?></a></h3></th>
+					<?php $totalGrand += $total; ?>
+					
+				</tr>
+				
+				<?php endforeach; ?>
+			
+			</tbody>
+			<tfoot>
+				<tr>
+					<td><h3>小计</h3></td>
+					<?php foreach ($footTotal as $k=>$v): ?>
+					<td><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$k,'end_time'=>$k))  ?>" target="_blank"><?php echo $v['num']; ?></a></h3></td>
+					<?php endforeach; ?>
+					<td><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $totalGrand; ?></a></h3></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<table class="data-table" width="100%" border="1" style="text-align:center;" cellspacing="0">
+			<thead>
+				<?php $hourArr = json_decode($this->getHourArr(),true); ?>
+				<?php $totalGrand = 0; ?>
+				<tr>
+					<th><h3  class="a-center">24小时内</h3></th>
+					<?php foreach ($hourArr['data'] as $_date): ?>
+					<th align="center"><?php echo date('H',strtotime($_date)); ?></th>
+					<?php endforeach; ?>
+					<th><h3>总计</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $globalData = json_decode($hourdata,true); ?>
+				<?php $footTotal = array(); ?>
+				
+				<?php foreach ($globalData['series'] as $_data):?>
+				<tr>
+					
+					<th  align="center"><h3><?php echo $_data['name']; ?></h3></th>
+					<?php $total = 0; ?>
+					<?php $i = 0; ?>
+					<?php foreach ($_data['data'] as $_d):?>
+					<td  align="right"><?php if ($_d): ?><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$dateArr['data'][$i],'end_time'=>$dateArr['data'][$i]))  ?>" target="_blank"><?php echo $_d; ?></a><?php else: ?><?php endif; ?></td>
+					<?php $total += $_d; ?>
+					<?php
+					if (array_key_exists($hourArr['data'][$i],$footTotal)) {
+						$footTotal[$hourArr['data'][$i]]['num'] += $_d;
+					} else {
+						$footTotal[$hourArr['data'][$i]] = array('name'=>$_data['name'],'num'=>$_d);
+					}
+					
+					?>
+					<?php $i++; ?>
+					
+					<?php endforeach; ?>
+					<th><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $total; ?></a></h3></th>
+					<?php $totalGrand += $total; ?>
+					
+				</tr>
+				
+				<?php endforeach; ?>
+			
+			</tbody>
+			<tfoot>
+				<tr>
+					<td><h3>小计</h3></td>
+					<?php foreach ($footTotal as $k=>$v): ?>
+					<td><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$k,'end_time'=>$k))  ?>" target="_blank"><?php echo $v['num']; ?></a></h3></td>
+					<?php endforeach; ?>
+					<td><h3 style="text-align:right"><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $totalGrand; ?></a></h3></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div style="margin-bottom:20px;margin-top:20px;"  class="grid">
+		<table class="data-table" width="100%" border="1" style="text-align:center;" cellspacing="0">
+			<thead>
+				<?php $dateArr = json_decode($this->getDateArr(),true); ?>
+	
+				<?php $totalGrand = 0; ?>
+				<tr>
+					<th><h3  class="a-center">日期</h3></th>
+					<?php foreach ($dateArr['data'] as $_date): ?>
+					<th align="center"><?php echo date('m/d',strtotime($_date)); ?></th>
+					<?php endforeach; ?>
+					<th><h3>总计</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $globalData = json_decode($daydata,true); ?>
+				<?php $footTotal = array(); ?>
+				
+				<?php foreach ($globalData['series'] as $_data):?>
+				<tr>
+					
+					<th  align="center"><h3><?php echo $_data['name']; ?></h3></th>
+					<?php $total = 0; ?>
+					<?php $i = 0; ?>
+					<?php foreach ($_data['data'] as $_d):?>
+					<td  align="right"><?php if ($_d): ?><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$dateArr['data'][$i],'end_time'=>$dateArr['data'][$i]))  ?>" target="_blank"><?php echo $_d; ?></a><?php else: ?><?php endif; ?></td>
+					<?php $total += $_d; ?>
+					<?php
+					if (array_key_exists($dateArr['data'][$i],$footTotal)) {
+						$footTotal[$dateArr['data'][$i]]['num'] += $_d;
+					} else {
+						$footTotal[$dateArr['data'][$i]] = array('name'=>$_data['name'],'num'=>$_d);
+					}
+					
+					?>
+					<?php $i++; ?>
+					
+					<?php endforeach; ?>
+					<th><h3><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $total; ?></a></h3></th>
+					<?php $totalGrand += $total; ?>
+					
+				</tr>
+				
+				<?php endforeach; ?>
+			
+			</tbody>
+			<tfoot>
+				<tr>
+					<td><h3>小计</h3></td>
+					<?php foreach ($footTotal as $k=>$v): ?>
+					<td><h3><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>$k,'end_time'=>$k))  ?>" target="_blank"><?php echo $v['num']; ?></a></h3></td>
+					<?php endforeach; ?>
+					<td><h3><a href="<?php echo $this->getUrl('*/*/daydetail',array('start_time'=>date('Y-m-d',strtotime(Mage::registry('start_time'))),'end_time'=>date('Y-m-d',strtotime(Mage::registry('end_time')))))  ?>" target="_blank"><?php echo $totalGrand; ?></a></h3></td>
+				</tr>
+			</tfoot>
+		</table>
+		<div id="main2" style="height:600px;padding:50px 10px 10px;"></div>
+		<div class="clearer" style="clear:both;"></div>
+		
+	</div>
+    
+</div>

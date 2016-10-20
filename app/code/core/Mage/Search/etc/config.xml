@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+	<global>
+		<events>
+			<catalog_post_save_commit_after>
+            	<observers>
+                    <search_catalog_post_save_commit_after>
+                        <type>singleton</type>
+                        <class>search/observer</class>
+                        <method>postSaveCommitAfter</method>
+                    </search_catalog_post_save_commit_after>
+                </observers>
+            </catalog_post_save_commit_after>
+			<catalog_post_delete_after>
+            	<observers>
+                    <search_catalog_post_delete_after>
+                        <type>singleton</type>
+                        <class>solr/observer</class>
+                        <method>postDeleteAfter</method>
+                    </search_catalog_post_delete_after>
+                </observers>
+            </catalog_post_delete_after>
+		</events>
+	</global>
+    <frontend>
+        <routers>
+            <search>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Search</module>
+                    <frontName>search</frontName>
+                </args>
+            </search>
+        </routers>
+    </frontend>
+</config>

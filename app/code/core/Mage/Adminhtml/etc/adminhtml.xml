@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <dashboard module="adminhtml">
+            <title>我的面板</title>
+            <sort_order>10</sort_order>
+            <action>adminhtml/dashboard</action>
+        </dashboard>
+ 
+        <system module="adminhtml">
+            <title>系统管理</title>
+            <sort_order>99999</sort_order>
+            <children>
+                <myaccount>
+                    <title>我的账号中心</title>
+                    <action>adminhtml/system_account</action>
+                    <sort_order>50</sort_order>
+                </myaccount>
+                <acl>
+                    <title>权限管理</title>
+                    <sort_order>70</sort_order>
+                    <children>
+                        <users>
+                            <title>用户</title>
+                            <action>adminhtml/permissions_user</action>
+                        </users>
+                        <roles>
+                            <title>角色</title>
+                            <action>adminhtml/permissions_role</action>
+                        </roles>
+                        
+                    </children>
+                </acl>
+                
+                <cache>
+                    <title>缓存管理</title>
+                    <action>adminhtml/cache</action>
+                    <sort_order>90</sort_order>
+                </cache>
+                <config>
+                    <title>系统设置</title>
+                    <action>adminhtml/system_config</action>
+                    <sort_order>110</sort_order>
+                </config>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow everything</title>
+            </all>
+            <admin module="adminhtml">
+                <title>Magento Admin</title>
+                <children>
+                    <dashboard>
+                        <title>Dashboard</title>
+                        <sort_order>0</sort_order>
+                    </dashboard>
+                    <system>
+                        <title>System</title>
+                        <sort_order>90</sort_order>
+                        <children>
+                            <acl>
+                                <title>Permissions</title>
+                                <sort_order>0</sort_order>
+                                <children>
+                                    <roles>
+                                        <title>Roles</title>
+                                        <sort_order>10</sort_order>
+                                    </roles>
+                                    <users>
+                                        <title>Users</title>
+                                        <sort_order>20</sort_order>
+                                    </users>
+                                    <variables>
+                                        <title>Variables</title>
+                                    </variables>
+                                    <blocks>
+                                        <title>Blocks</title>
+                                    </blocks>
+                                </children>
+                            </acl>
+                            <design>
+                                <title>Design</title>
+                                <sort_order>25</sort_order>
+                            </design>
+                            <config>
+                                <title>Configuration</title>
+                                <sort_order>20</sort_order>
+                                <children>
+                                    <general>
+                                        <title>General Section</title>
+                                        <sort_order>20</sort_order>
+                                    </general>
+                                    <web>
+                                        <title>Web Section</title>
+                                        <sort_order>30</sort_order>
+                                    </web>
+                                    <design>
+                                        <title>Design Section</title>
+                                        <sort_order>40</sort_order>
+                                    </design>
+                                    <system>
+                                        <title>System Section</title>
+                                        <sort_order>80</sort_order>
+                                    </system>
+                                    <advanced>
+                                        <title>Advanced Section</title>
+                                        <sort_order>90</sort_order>
+                                    </advanced>
+                                    <trans_email>
+                                        <title>Store Email Addresses Section</title>
+                                        <sort_order>100</sort_order>
+                                    </trans_email>
+                                    <dev>
+                                        <title>Developer Section</title>
+                                        <sort_order>110</sort_order>
+                                    </dev>
+                                    <currency>
+                                        <title>Currency Setup Section</title>
+                                        <sort_order>120</sort_order>
+                                    </currency>
+                                    <sendfriend>
+                                        <title>Email to a Friend</title>
+                                        <sort_order>140</sort_order>
+                                    </sendfriend>
+                                    <admin>
+                                        <title>Advanced Admin Section</title>
+                                        <sort_order>100</sort_order>
+                                    </admin>
+                                </children>
+                            </config>
+                            <currency>
+                                <title>Manage Currency Rates</title>
+                                <sort_order>30</sort_order>
+                            </currency>
+                            <email_template>
+                                <title>Transactional Emails</title>
+                                <sort_order>40</sort_order>
+                            </email_template>
+                            <variable>
+                                <title>Custom Variables</title>
+                                <sort_order>45</sort_order>
+                            </variable>
+                            <myaccount>
+                                <title>My Account</title>
+                                <sort_order>50</sort_order>
+                            </myaccount>
+                            <tools>
+                                <title>Tools</title>
+                                <sort_order>60</sort_order>
+                            </tools>
+                            
+                            <cache>
+                                <title>Cache Management</title>
+                            </cache>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+        <privilegeSets>
+            <default>
+                <view>
+                    <descr>View entity</descr>
+                </view>
+                <edit>
+                    <descr>Edit entity</descr>
+                </edit>
+                <delete>
+                    <descr/>
+                </delete>
+                <create>
+                    <descr/>
+                </create>
+            </default>
+        </privilegeSets>
+    </acl>
+</config>

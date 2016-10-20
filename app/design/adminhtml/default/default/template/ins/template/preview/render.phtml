@@ -1,0 +1,36 @@
+<?php $template = Mage::registry('current_template'); ?>
+<?php if ($template && $template->getId()): ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="en-us" http-equiv="Content-Language">
+</head>
+<body>
+	<!-- 背景层开始 bgcolor="#494f59" -->
+	<table bgcolor="#F5f5f5" width="100%" description="darkestBgcolor" name="tid" style="margin: 0px; padding: 0px;">
+		<tbody>
+			<tr>
+				<td>
+	
+					<div id="BG">
+						<table cellspacing="0" cellpadding="0" align="center" width="600" style="font-family: 'Verdana';">
+							<tbody>
+								<tr>
+									<td><!--背景层结束-->
+										<?php echo Mage::helper('ins/template')->render($template->getData('htmlbody')); ?>
+									</td>
+								</tr>
+							</tbody>
+						
+						</table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+</body>
+
+</html>
+<?php endif; ?>

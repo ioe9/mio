@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_compiler_process_index>
+        <reference name="content">
+            <block type="compiler/process" name="compiler_process" template="compiler/process.phtml"></block>
+        </reference>
+    </adminhtml_compiler_process_index>
+</layout>

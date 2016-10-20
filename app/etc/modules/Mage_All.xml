@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+    	<standard>
+	        <Mage_Core><name>core</name></Mage_Core>
+	        <Mage_Admin><name>admin</name></Mage_Admin>
+	        <Mage_Adminhtml><name>adminhtml</name></Mage_Adminhtml>
+        	<Mage_Page><name>page</name></Mage_Page>
+        	<Mage_Cms><name>cms</name></Mage_Cms>
+        	<Mage_Compiler><name>compiler</name></Mage_Compiler>
+        	<Mage_Widget><name>widget</name></Mage_Widget>
+        	<Mage_Media><name>media</name></Mage_Media>
+        	<Mage_Catalog><name>catalog</name></Mage_Catalog>
+        	<Mage_Search><name>search</name></Mage_Search>
+        	<Mage_Customer><name>customer</name></Mage_Customer>
+
+        </standard>
+    </modules>
+</config>

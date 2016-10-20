@@ -1,0 +1,65 @@
+<html>
+<head>
+	<link type="text/css" href="<?php echo $this->getSkinUrl('reset.css'); ?>" rel="stylesheet">
+	<style>
+		select {
+		    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+		    font-size: 11px;
+		    width: 250px;
+		}
+	</style>
+	<!--[if IE]>
+	<style type="text/css">
+		@import url("includes/styles/ie.css");
+	</style>
+	<![endif]-->
+	<script>
+		function switchView(i)
+		{
+		        if (top.frames[2]) { var display_frame = top.frames[2]; } // For email client compatibility page
+		        else { var display_frame = top.frames[1]; } // For preview campaign page
+	
+			display_frame.document.location.href = 'http://interspire.com/admin/index.php?Page=Preview&amp;Action=Display&amp;Type=' + i;
+	
+			if (i == 'html') {
+				document.getElementById('description').style.display = '';
+				document.getElementById('description_hide').style.display = 'none';
+	
+				if (parent.document.getElementById("mainframe")) parent.document.getElementById("mainframe").cols = "18%, *";
+			} else {
+				document.getElementById('description').style.display = 'none';
+				document.getElementById('description_hide').style.display = '';
+	
+				if (parent.document.getElementById("mainframe")) parent.document.getElementById("mainframe").cols = "0, *";
+			}
+		}
+	
+		function changeDisplay(newdisplay) {
+			parent.frame_display.location = 'http://interspire.com/admin/index.php?Page=Preview&amp;Action=Display&amp;Type=' + newdisplay;
+	
+			var broken_location = 'http://interspire.com/admin/index.php?Page=Preview&amp;Action=BrokenRules#';
+			if (newdisplay != 'html') {
+				broken_location += 'broken_rule_' + newdisplay;
+			}
+			parent.frame_broken.location = broken_location;
+		}
+	</script>
+</head>
+<body style="background-color: #F3F2E9; padding: 0;">
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="padding-left: 8px; padding-top: 8px">
+	<tbody><tr>
+		<td style="font-family: Tahoma, Arial; font-size: 12px;">
+			<div style="display: '';" id="description">
+				&nbsp;			</div>
+			<div style="display: none;" id="description_hide">
+				&nbsp;
+			</div>
+		</td>
+		<td align="right">
+			<select onchange="switchView(this.options[this.selectedIndex].value)" id="f">
+				<option selected="" value="html">HTML Preview</option></select>
+			&nbsp;
+		</td>
+	</tr>
+</tbody></table>
+</body></html>

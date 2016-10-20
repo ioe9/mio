@@ -1,0 +1,41 @@
+<?php $layout = Mage::registry('current_layout'); ?>
+<?php if ($layout && $layout->getId()): ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="en-us" http-equiv="Content-Language">
+	<?php if ($layout->getData('styles')): ?>
+	<style>
+	<?php echo $layout->getData('styles'); ?>
+	<?php endif; ?>
+	</style>
+</head>
+<body>
+	<!-- 背景层开始 bgcolor="#494f59" -->
+	<table <?php if ($layout->getBgcolor()): ?> bgcolor="<?php echo $layout->getBgcolor(); ?>" <?php endif; ?> width="100%" description="darkestBgcolor" name="tid" style="margin: 0px; padding: 0px;">
+		<tbody>
+			<tr>
+				<td>
+	
+					<div id="BG">
+						<table cellspacing="0" cellpadding="0" align="center" width="600" style="font-family: 'Verdana';">
+							<tbody>
+								<tr>
+									<td><!--背景层结束-->
+										<?php echo Mage::helper('ins/template')->renderLayout($layout); ?>
+									</td>
+								</tr>
+							</tbody>
+						
+						</table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+</body>
+
+</html>
+<?php endif; ?>

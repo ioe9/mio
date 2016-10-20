@@ -1,0 +1,12 @@
+
+<div class="entry-edit">
+    <?php echo $this->getFormHtml();?>
+</div>
+<?php echo $this->getChildHtml('form_after');?>
+<script>
+jQuery('#advantage_option_btn').click(function(){
+	var count = jQuery('.advantage-option').length;
+	jQuery(this).parent().parent().before('<tr><td class="label"><label for="">Pick List '+(count+1)+' Value</label></td><td class="value"><input type="text" class=" input-text advantage-option" title="" value="" name="advantage_option_new[]" id=""></td></tr>');
+})
+
+</script>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <global/>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Mage_Compiler before="Mage_Adminhtml">Mage_Compiler_Adminhtml</Mage_Compiler>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

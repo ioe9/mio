@@ -1,0 +1,62 @@
+<div class="entry-edit custom-options">
+   
+    <div class="entry-edit-head">
+        <h4>规则动作设置</h4>
+        <div class="right"><?php echo $this->getChildHtml('add_button') ?></div>
+    </div>
+    <div id="action_container" class="box">
+        
+    </div>
+    <div class="no-display">
+    	<?php $actionType = Mage::helper('ins/client_rule')->getActionType(); ?>
+    	<div id="actionTemplate">
+    		<div class="option-box">
+    			<table>
+    				<col width="100" />
+    				<col width="500" />
+    				<tbody>
+    					<tr>
+		    				<th>动作类型</th>
+		    				<td>
+		    					<select name="actions[type][]" class="select">
+		    						<option value=""> -- 请选择动作 -- </option>
+		    						<?php foreach ($actionType as $_key => $_type): ?>
+									<option value="<?php echo $_key; ?>"><?php echo $_type['name']; ?></option>
+									<?php endforeach; ?>
+								</select>
+								
+		    				</td>
+		    				<!--
+		    				<td>
+		    					<div class="action-config-container">
+			    					<?php foreach ($actionType as $_key => $_type): ?>
+				    					<?php if ($_key=='update_client_attr'): ?>
+				    					<div id="" class="action-config">
+				    						<select name="action_client_attr" class="select">
+				    							<option value=""> -- 请选择动作 -- </option>
+				    							<?php foreach ($_type['attr'] as $_type): ?>
+				    							
+					    						
+												<option value="<?php echo $_type['value']; ?>"><?php echo $_type['label']; ?></option>
+												<?php endforeach; ?>
+				    						</select>
+				    					</div>
+				    					<?php endif; ?>
+			    					<?php endforeach; ?>
+		    					</div>
+		    				</td>-->
+	    				</tr>
+    				</tbody>
+				</table>
+			</div>
+    	
+    	</div>
+    	
+    </div>
+</div>
+<script>
+jQuery('#add_new_action').click(function(){
+	jQuery('#action_container').append(jQuery('#actionTemplate').html());
+})
+
+</script>

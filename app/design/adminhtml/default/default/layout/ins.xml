@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_ins_system_smtp_edit>
+       
+    </adminhtml_ins_system_smtp_edit>
+    <adminhtml_ins_template_edit>
+   		<update handle="editor"/>
+    </adminhtml_ins_template_edit>
+    <adminhtml_ins_template_layout_edit>
+   		<update handle="editor"/>
+    </adminhtml_ins_template_layout_edit>
+    <adminhtml_ins_template_module_item_edit>
+   		<update handle="editor"/>
+    </adminhtml_ins_template_module_item_edit>
+    
+    
+    <adminhtml_ins_template_preview_index>
+   		<reference name="root">
+            <action method="setTemplate"><template>ins/template/preview/iframeset.phtml</template></action>
+        </reference>
+    </adminhtml_ins_template_preview_index>
+    <adminhtml_ins_template_preview_switch>
+   		<reference name="root">
+            <action method="setTemplate"><template>ins/template/preview/switch.phtml</template></action>
+        </reference>
+    </adminhtml_ins_template_preview_switch>
+    <adminhtml_ins_template_preview_render>
+   		<reference name="root">
+            <action method="setTemplate"><template>ins/template/preview/render.phtml</template></action>
+        </reference>
+    </adminhtml_ins_template_preview_render>
+    <adminhtml_ins_template_layout_preview>
+   		<reference name="root">
+            <action method="setTemplate"><template>ins/template/layout/preview.phtml</template></action>
+        </reference>
+    </adminhtml_ins_template_layout_preview>
+</layout>

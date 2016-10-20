@@ -1,0 +1,90 @@
+<?php $optGroups = $this->getTemplateConfig(); ?>
+<div id="t_<?php echo $this->getCode(); ?>_conditions_combination" style="display:none;">
+	<label>If</label>
+	<span class="rule-param">
+		<a href="javascript:void(0)" class="label select-next">ALL</a>
+		<span class="element"> 
+			<select id="<?php echo $this->getCode(); ?>_conditions__1__aggregator" name="<?php echo $this->getCode(); ?>[conditions][1][aggregator]" class="element-value-changer select item aggregator">
+				<option value="all" selected="selected">ALL</option>
+				<option value="any">ANY</option>
+			</select>
+		</span>
+	</span>
+	<label>&nbsp; 以下条件  </label>
+	<span class="rule-param">
+		<a href="javascript:void(0)" class="label select-next">TRUE</a>
+		<span class="element">
+			<select id="<?php echo $this->getCode(); ?>_conditions__1__value" name="<?php echo $this->getCode(); ?>[conditions][1][value]" class=" element-value-changer select item value">
+				<option value="1" selected="selected">TRUE</option>
+				<!--<option value="0">FALSE</option>-->
+			</select>
+		</span>
+	</span>&nbsp;:
+	<span class="rule-param"><a title="Remove" class="rule-param-remove" href="javascript:void(0)"><img class="v-middle" alt="" src="<?php echo $this->getSkinUrl('images/rule_component_remove.gif'); ?>"></a></span>
+	<ul class="rule-param-children">
+		<li>
+			<span class="rule-param rule-param-new-child">
+				<a href="javascript:void(0)" class="label"><img src="<?php echo $this->getSkinUrl('images/rule_component_add.gif'); ?>" class="rule-param-add v-middle" alt="" title="Add"></a>
+				<span class="element">
+					<select id="<?php echo $this->getCode(); ?>_conditions__1__new_child" name="<?php echo $this->getCode(); ?>[conditions][1][new_child]" class=" element-value-changer main select">
+						<option value="" selected="selected">请选择一个条件...</option>
+						<option value="t_<?php echo $this->getCode(); ?>_conditions_combination">条件子组</option>
+						
+						<?php foreach ($optGroups as $_optGroup): ?>
+						<optgroup label="<?php echo $_optGroup['label'];  ?>">
+							<?php foreach ($_optGroup['data'] as $_option): ?>
+							<option value="t_<?php echo $this->getCode(); ?>_conditions_<?php echo $_option['code'];  ?>"><?php echo $_option['label'];  ?></option>
+							<?php endforeach; ?>
+						</optgroup>
+						<?php endforeach; ?>
+					</select>
+				</span>
+			</span>
+		</li>
+	</ul>
+</div>
+
+<?php foreach ($optGroups as $_optGroup): ?>
+	<?php foreach ($_optGroup['data'] as $_option): ?>
+	<div id="t_<?php echo $this->getCode(); ?>_conditions_<?php echo $_option['code'];  ?>" style="display:none;">
+		<label><?php echo $_option['label'];  ?></label>
+		<span class="rule-param">
+			<a href="javascript:void(0)" class="label select-next"></a>
+			<span class="element"> 
+				<select class="element-value-changer select item operator">
+					<?php if (is_array($_option['operator'])): ?>
+						<?php $i = 0; ?>
+						<?php foreach ($_option['operator'] as $_key=>$_value): ?>
+						<option value="<?php echo $_key; ?>"><?php echo $_value; ?></option>
+						<?php $i++; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</select>
+			</span>
+		</span>
+		<span class="rule-param">
+			<a class="label <?php if($_option['value']['type']!="select"): ?>input-text-next<?php else: ?>select-next<?php endif; ?>" href="javascript:void(0)">...</a>
+			<span class="element">
+				<?php if($_option['value']['type']!="select"): ?>
+				<input type="text" class="input-text element-value-changer item value" />
+				<?php else: ?>
+				<select class="element-value-changer select value item">
+					<?php foreach ($_option['value']['data'] as $_key=>$_value): ?>
+					<option value="<?php echo $_key; ?>"><?php echo $_value; ?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php endif; ?>
+			</span>
+		</span>&nbsp;:
+		<span class="rule-param"><a title="Remove" class="rule-param-remove" href="javascript:void(0)"><img class="v-middle" alt="" src="<?php echo $this->getSkinUrl('images/rule_component_remove.gif'); ?>"></a></span>
+	</div>
+	<?php endforeach; ?>
+<?php endforeach; ?>
+<script type="text/javascript">
+//<![CDATA[
+jQuery('#t_<?php echo $this->getCode(); ?>_conditions_combination').insrule({
+	code:'<?php echo $this->getCode(); ?>',
+	rule:<?php echo json_encode($this->getRule()); ?>
+})
+//]]>
+</script>

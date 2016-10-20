@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout>
+    
+    <adminhtml_catalog_post_new>
+        <update handle="editor"/>
+
+        <reference name="js">
+            <block type="adminhtml/catalog_post_edit_js" template="catalog/post/js.phtml" name="catalog_post_js"></block>
+            <block type="core/template" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </adminhtml_catalog_post_new>
+
+    <adminhtml_catalog_post_edit>
+        <update handle="editor"/>
+        
+        <reference name="js">
+            <block type="adminhtml/catalog_post_edit_js" template="catalog/post/js.phtml" name="catalog_post_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </adminhtml_catalog_post_edit>
+
+    <adminhtml_catalog_post_categories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/catalog_post_edit_tab_categories" name="catalog.post.edit.tab.categories"/>
+        </block>
+    </adminhtml_catalog_post_categories>
+    
+    <adminhtml_catalog_post_reviews>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/catalog_post_edit_tab_reviews" name="admin.post.reviews"/>
+        </block>
+    </adminhtml_catalog_post_reviews>
+
+    <adminhtml_catalog_post_options>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/catalog_post_edit_tab_options" name="admin.post.options"/>
+        </block>
+    </adminhtml_catalog_post_options>
+
+    <adminhtml_catalog_post_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/catalog_post_grid" name="admin.post.grid"/>
+        </block>
+    </adminhtml_catalog_post_grid>
+    <adminhtml_catalog_category_edit>
+        <update handle="editor"/>
+        <reference name="left">
+            <block name="category.tree" type="adminhtml/catalog_category_tree" template="catalog/category/tree.phtml" />
+        </reference>
+        <reference name="content">
+            <block name="category.edit"  type="adminhtml/catalog_category_edit" template="catalog/category/edit.phtml" />
+        </reference>
+        <reference name="js">
+            <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
+        </reference>
+    </adminhtml_catalog_category_edit>
+</layout>

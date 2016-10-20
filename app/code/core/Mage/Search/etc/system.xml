@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <solr translate="label" module="search">
+            <label>Solr配置</label>
+            <tab>general</tab>
+            <sort_order>9000</sort_order>
+            <groups>
+                <server translate="label">
+                    <label>Solr Master Server Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <host translate="label">
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                        </host>
+                        <port translate="label">
+                            <label>Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                        </port>
+                        <path translate="label">
+                            <label>Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                        </path>
+                    </fields>
+                </server>
+                <server_slave translate="label">
+                    <label>Solr Slave Server Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <host translate="label">
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                        </host>
+                        <port translate="label">
+                            <label>Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                        </port>
+                        <path translate="label">
+                            <label>Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                        </path>
+                    </fields>
+                </server_slave>
+            </groups>
+        </solr>
+    </sections>
+</config>

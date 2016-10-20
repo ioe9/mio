@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Widget>
+            <version>1.6.0.0</version>
+        </Mage_Widget>
+    </modules>
+    <global>
+        
+        
+        <cms>
+            <page>
+                <tempate_filter>widget/template_filter</tempate_filter>
+            </page>
+            <block>
+                <tempate_filter>widget/template_filter</tempate_filter>
+            </block>
+        </cms>
+        <widget>
+            <related_cache_types>
+                <block_html/>
+                <layout/>
+            </related_cache_types>
+        </widget>
+    </global>
+    <adminhtml>
+        
+        <events>
+            <cms_wysiwyg_config_prepare>
+                <observers>
+                    <widget_observer>
+                        <class>widget/observer</class>
+                        <method>prepareWidgetsPluginConfig</method>
+                    </widget_observer>
+                </observers>
+            </cms_wysiwyg_config_prepare>
+        </events>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <widget before="Mage_Adminhtml">Mage_Widget_Adminhtml</widget>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>
